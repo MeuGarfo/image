@@ -1,6 +1,8 @@
 <?php
 namespace Basic;
+
 use claviska\SimpleImage;
+
 class Image{
     function auto_orient($src,$dst=false){
         if(!$dst){
