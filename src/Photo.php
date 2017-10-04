@@ -1,24 +1,46 @@
 <?php
 namespace Basic;
-//https://github.com/MeuGarfo/SimpleImage
+use claviska\SimpleImage;
 class Photo{
-    var $image;
-    function auto_orient($src,$dst){
-    	//autoOrient()
+    function auto_orient($src,$dst=false){
+        if(!$dst){
+            $dst=$src;
+        }
+        return $this
+        ->image($src)
+        ->autoOrient()
+        ->toFile($dst);
     }
     function crop($src,$dst,$x1,$y1,$x2,$y2){
-    	//crop($x1, $y1, $x2, $y2)
+        return $this
+        ->image($src)
+        ->crop($x1, $y1, $x2, $y2)
+        ->toFile($dst);
+    }
+    function image($src){
+        $image = new \claviska\SimpleImage();
+        return $image->fromFile($src);
     }
     function info($src){
-    	//getMimeType()
-    	//getHeight()
-    	//getWidth()
+        $image=$this->image($src);
+        $info['width']=$image->getWidth();
+        $info['height']=$image->getHeight();
+        $info['orientation']=$image->getOrientation();
+        $info['mime']=$image->getMimeType();
+        $info['exif']=$image->getExif();
+        return $info;
     }
     function resize($src,$dst,$max_width,$max_height){
-    	//bestFit($maxWidth, $maxHeight)
+        return $this
+        ->image($src)
+        ->bestFit($max_width, $max_height)
+        ->toFile($dst);
     }
-    function thumbnail($src,$dst,$width,$height){
-        //thumbnail($width, $height, $anchor)
+    function thumb($src,$dst,$width,$height){
+        $anchor='center';
+        return $this
+        ->image($src)
+        ->thumbnail($width, $height, $anchor)
+        ->toFile($dst);
     }
 }
-?>
