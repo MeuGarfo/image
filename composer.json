@@ -9,6 +9,6 @@
         }
     },
     "require": {
-        "claviska/simpleimage": "dev-master"
+        "claviska/simpleimage": "3.3.3"
     }
 }
