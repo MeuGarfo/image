@@ -19,7 +19,7 @@ class Image
     * @param  string $dst Imagem de destino
     * @return bool        Retorna true ou false
     */
-    public function autoOrient(string $src, string $dst):bool
+    public function autoOrient(string $src, string $dst)
     {
         if (!$dst) {
             $dst=$src;
@@ -39,7 +39,7 @@ class Image
     * @param  integer $y2  Coordenada y2
     * @return bool         retorna true ou false
     */
-    public function crop(string $src, string $dst, integer $x1, integer $y1, integer $x2, integer $y2):bool
+    public function crop(string $src, string $dst, integer $x1, integer $y1, integer $x2, integer $y2)
     {
         return $this
         ->image($src)
@@ -51,7 +51,7 @@ class Image
     * @param  string $src Imagem de origem
     * @return object      Instância da classe SimpleImage
     */
-    public function image(string $src):object
+    public function image(string $src)
     {
         $image = new \claviska\SimpleImage();
         return $image->fromFile($src);
@@ -61,7 +61,7 @@ class Image
     * @param  string $src Imagem de origem
     * @return array       Dados da imagem
     */
-    public function info(string $src):array
+    public function info(string $src)
     {
         $image=$this->image($src);
         $info['width']=$image->getWidth();
@@ -79,7 +79,7 @@ class Image
     * @param  integer $max_height Altura máxima
     * @return bool                Retorna true ou false
     */
-    public function resize(string $src, string $dst, integer $max_width, integer $max_height):bool
+    public function resize(string $src, string $dst, integer $max_width, integer $max_height)
     {
         return $this
         ->image($src)
@@ -94,7 +94,7 @@ class Image
     * @param  integer $height Altura da miniatura
     * @return bool            Retorna true ou false
     */
-    public function thumb(string $src, string $dst, integer $width, integer $height):bool
+    public function thumb(string $src, string $dst, integer $width, integer $height)
     {
         $anchor='center';
         return $this
